@@ -127,6 +127,17 @@ function createPassadeira(){
     const faixa5 = faixa.clone();
     faixa5.position.set(0, 0.1, 12);
 
+    faixa.castShadow = true;
+    faixa.receiveShadow = true;
+    faixa2.castShadow = true;
+    faixa2.receiveShadow = true;
+    faixa3.castShadow = true;
+    faixa3.receiveShadow = true;
+    faixa4.castShadow = true;
+    faixa4.receiveShadow = true;
+    faixa5.castShadow = true;
+    faixa5.receiveShadow = true;
+
     passadeira.add(faixa);
     passadeira.add(faixa2);
     passadeira.add(faixa3);
@@ -192,9 +203,6 @@ function createEntrocamento(){
 
     plano2.castShadow = true;
     plano2.receiveShadow = true;
-
-    passadeira2.castShadow = true;
-    passadeira2.receiveShadow = true;
     
     entrocamento.add(passadeira2);
     entrocamento.add(plano2);
@@ -211,9 +219,6 @@ function createEntrocamento(){
 
     plano3.castShadow = true;
     plano3.receiveShadow = true;
-
-    passadeira3.castShadow = true;
-    passadeira3.receiveShadow = true;
     
     entrocamento.add(passadeira3);
     entrocamento.add(plano3);
@@ -232,9 +237,6 @@ function createEntrocamento(){
 
     plano4.castShadow = true;
     plano4.receiveShadow = true;
-
-    passadeira4.castShadow = true;
-    passadeira4.receiveShadow = true;
     
     entrocamento.add(passadeira4);
     entrocamento.add(plano4);
@@ -251,9 +253,6 @@ function createEntrocamento(){
 
     plano5.castShadow = true;
     plano5.receiveShadow = true;
-
-    passadeira5.castShadow = true;
-    passadeira5.receiveShadow = true;
     
     entrocamento.add(passadeira5);
     entrocamento.add(plano5);
@@ -289,9 +288,6 @@ function createCruzamento(){
     const passadeira2 = createPassadeira();
     passadeira2.position.set(0, 0, -25);
     passadeira2.rotation.y = Math.PI/2;
-
-    passadeira2.receiveShadow = true;
-    passadeira2.receiveShadow = true;
     
     cruz.add(passadeira2);
     cruz.add(plano2);
@@ -318,6 +314,9 @@ function createGround(){
     chao1.rotation.x = -Math.PI/2;
     chao1.position.set(200+7.5,0,-320-7.5);
 
+    chao1.castShadow = true;
+    chao1.receiveShadow = true;
+
     //seccao2
     const texture2 = new THREE.TextureLoader().load('textures/grass.jpg');
 
@@ -331,6 +330,9 @@ function createGround(){
     const chao2 = new THREE.Mesh(geometry2, material2);
     chao2.rotation.x = -Math.PI/2;
     chao2.position.set(350+7.5,0,-120);
+
+    chao2.castShadow = true;
+    chao2.receiveShadow = true;
 
     //seccao3
     const texture3 = new THREE.TextureLoader().load('textures/ground.jpg');
@@ -346,6 +348,9 @@ function createGround(){
     chao3.rotation.x = -Math.PI/2;
     chao3.position.set(150,0,-120);
 
+    chao3.castShadow = true;
+    chao3.receiveShadow = true;
+
     //seccao4
 
     const texture4 = new THREE.TextureLoader().load('textures/grass.jpg');
@@ -359,6 +364,9 @@ function createGround(){
     const chao4 = new THREE.Mesh(geometry4, material4);
     chao4.rotation.x = -Math.PI/2;
     chao4.position.set(350+7.5,0,200+7.5);
+
+    chao4.castShadow = true;
+    chao4.receiveShadow = true;
 
     //seccao5
 
@@ -375,6 +383,9 @@ function createGround(){
     chao5.rotation.x = -Math.PI/2;
     chao5.position.set(150,0,120);
 
+    chao5.castShadow = true;
+    chao5.receiveShadow = true;
+
     //seccao6
 
     const texture6 = new THREE.TextureLoader().load('textures/grass.jpg');
@@ -389,6 +400,9 @@ function createGround(){
     chao6.rotation.x = -Math.PI/2;
     chao6.position.set(150,0,320+7.5);
 
+    chao6.castShadow = true;
+    chao6.receiveShadow = true;
+
     //seccao7
 
     const texture7 = new THREE.TextureLoader().load('textures/grass.jpg');
@@ -402,6 +416,9 @@ function createGround(){
     const chao7 = new THREE.Mesh(geometry7, material7);
     chao7.rotation.x = -Math.PI/2;
     chao7.position.set(-150,0,-320-7.5);
+
+    chao7.castShadow = true;
+    chao7.receiveShadow = true;
 
     //seccao8
 
@@ -418,6 +435,9 @@ function createGround(){
     chao8.rotation.x = -Math.PI/2;
     chao8.position.set(-150,0,-120);
 
+    chao8.castShadow = true;
+    chao8.receiveShadow = true;
+
     //seccao9
 
     const texture9 = new THREE.TextureLoader().load('textures/ground.jpg');
@@ -433,6 +453,9 @@ function createGround(){
     chao9.rotation.x = -Math.PI/2;
     chao9.position.set(-150,0,120);
 
+    chao9.castShadow = true;
+    chao9.receiveShadow = true;
+
     //seccao10
 
     const texture10 = new THREE.TextureLoader().load('textures/grass.jpg');
@@ -446,6 +469,9 @@ function createGround(){
     const chao10 = new THREE.Mesh(geometry10, material10);
     chao10.rotation.x = -Math.PI/2;
     chao10.position.set(-150,0,320+7.5);
+
+    chao10.castShadow = true;
+    chao10.receiveShadow = true;
 
     //seccao11
 
@@ -461,6 +487,9 @@ function createGround(){
     chao11.rotation.x = -Math.PI/2;
     chao11.position.set(-350-7.5,0,-320-7.5);
 
+    chao11.castShadow = true;
+    chao11.receiveShadow = true;
+
     //seccao12
 
     const texture12 = new THREE.TextureLoader().load('textures/grass.jpg');
@@ -475,6 +504,9 @@ function createGround(){
     chao12.rotation.x = -Math.PI/2;
     chao12.position.set(-350-7.5,0,0);
 
+    chao12.castShadow = true;
+    chao12.receiveShadow = true;
+
     //seccao13
     const texture13 = new THREE.TextureLoader().load('textures/grass.jpg');
 
@@ -487,6 +519,9 @@ function createGround(){
     const chao13 = new THREE.Mesh(geometry13, material13);
     chao13.rotation.x = -Math.PI/2;
     chao13.position.set(-350-7.5,0,320+7.5);
+
+    chao13.castShadow = true;
+    chao13.receiveShadow = true;
 
     ground.add(chao1);
     ground.add(chao2);
@@ -501,7 +536,6 @@ function createGround(){
     ground.add(chao11);
     ground.add(chao12);
     ground.add(chao13);
-
 
     return ground;
 }
@@ -706,19 +740,23 @@ function createCar(){
 
     //TODO adicionar luzes ao carro
 
-    const pointLight = new THREE.PointLight('rgb(255, 209, 43)', 0.8);
-    pointLight.position.set(0, 8, 0);
+    const spotLight = new THREE.SpotLight('rgb(255, 209, 43)', 0.5);
+    spotLight.position.set(1, 7.6, -7.6);
 
-    sceneElements.sceneGraph.add(pointLight.target);
-    sceneElements.sceneGraph.add(pointLight);
+    spotLight.target.position.set(1,7.6,-160);
 
-    pointLight.castShadow = true;
-    pointLight.shadow.mapSize.width = 2048;
-    pointLight.shadow.mapSize.height = 2048;
+    spotLight.castShadow = true;
+    spotLight.shadow.camera.near = 0.1;
+    spotLight.shadow.camera.far = 500;
+    spotLight.shadow.camera.left = -500;
+    spotLight.shadow.camera.right = 500;
+    spotLight.shadow.camera.top = 500;
+    spotLight.shadow.camera.bottom = -500;
 
-    pointLight.name = "car_light";
+    spotLight.name = "car_light";
 
-    car.add(pointLight);
+    car.add(spotLight);
+    car.add(spotLight.target);
 
     return car;
 
@@ -741,11 +779,17 @@ function createBuilding1(){
     const outside = new THREE.Mesh( geometry, material2 );
     outside.position.y = 35;
 
+    outside.castShadow = true;
+    outside.receiveShadow = true;
+
     geometry = new THREE.BoxGeometry(6, 50, 6); // same height, different x and z
     const inside1 = new THREE.Mesh( geometry, material );
     inside1.position.y = 45;
     inside1.position.z = 16.25;
     inside1.position.x = 5;
+
+    inside1.castShadow = true;
+    inside1.receiveShadow = true;
 
     geometry = new THREE.BoxGeometry(6, 50, 6); // same height, different x and z
     const inside8 = new THREE.Mesh( geometry, material );
@@ -753,32 +797,54 @@ function createBuilding1(){
     inside8.position.z = -16.25;
     inside8.position.x = 5;
 
+    inside8.castShadow = true;
+    inside8.receiveShadow = true;
+
     geometry = new THREE.BoxGeometry(6, 50, 6); // same height, different x and z
     const inside2 = new THREE.Mesh( geometry, material );
     inside2.position.y = 45;
     inside2.position.x = 20;
+
+    inside2.castShadow = true;
+    inside2.receiveShadow = true;
 
     geometry = new THREE.BoxGeometry(6, 70, 40); // same height, different x and z
     const inside3 = new THREE.Mesh( geometry, material );
     inside3.position.y = 35;
     inside3.position.x = -20;
 
+    inside3.castShadow = true;
+    inside3.receiveShadow = true;
+
     //retirar buracos
     geometry = new THREE.BoxGeometry(40, 5, 40);
     const inside4 = new THREE.Mesh( geometry, material);
     inside4.position.y = 32.5;
 
+    inside4.castShadow = true;
+    inside4.receiveShadow = true;
+
     const inside5 = inside4.clone();
     inside5.position.y = 50;
+
+    inside5.castShadow = true;
+    inside5.receiveShadow = true;
+
 
     //top and under
     const geometryup =  new THREE.BoxGeometry(40, 20, 40);
     const inside6 = new THREE.Mesh( geometryup, material);
     inside6.position.y = 10;
 
+    inside6.castShadow = true;
+    inside6.receiveShadow = true;
+
     const geometrydown =  new THREE.BoxGeometry(46, 7.5, 40);
     const inside7 = new THREE.Mesh( geometrydown, material);
     inside7.position.y = 70;
+
+    inside7.castShadow = true;
+    inside7.receiveShadow = true;
 
     //dor hole
     const door = new THREE.Group();
@@ -786,17 +852,29 @@ function createBuilding1(){
     const hole = new THREE.BoxGeometry(5, 15, 16);
     const hole_ = new THREE.Mesh(hole, material2);
     
+    hole_.castShadow = true;
+    hole_.receiveShadow = true;
+    
     let geometry_door = new THREE.BoxGeometry(1, 15, 1);
     const material_door = new THREE.MeshPhongMaterial({color: 0xC0C0C0});
     const aba1 = new THREE.Mesh(geometry_door, material_door);
     aba1.position.x = 2.7;
     aba1.position.z = -7.5;
 
+    aba1.castShadow = true;
+    aba1.receiveShadow = true;
+
     const aba2 = aba1.clone();
     aba2.position.z = 7.5;
 
+    aba2.castShadow = true;
+    aba2.receiveShadow = true;
+
     const aba3 = aba1.clone();
     aba3.position.z = 0;
+
+    aba3.castShadow = true;
+    aba3.receiveShadow = true;
 
     door.add(hole_);
     door.add(aba1);
@@ -843,6 +921,14 @@ function createSingleJanela(){
     const janela1_outside = new THREE.Mesh(geometry_outside, material_outside);
     janela1_outside.position.z = -0.3;
 
+    
+    janela1.castShadow = true;
+    janela1.receiveShadow = true;
+
+    janela1_outside.castShadow = true;
+    janela1_outside.receiveShadow = true;
+
+
     //adicionar pecas dos lados das janelas para parecer mais natural?
 
     janela.add(janela1);
@@ -885,6 +971,9 @@ function createPorta(){
     const doorMaterial = new THREE.MeshPhongMaterial({color: 0xffffff, map: texture}); //branco
     const doorMesh = new THREE.Mesh( doorGeometry, doorMaterial );
 
+    doorMesh.castShadow = true;
+    doorMesh.receiveShadow = true;
+
     porta.add(doorMesh);
 
     return doorMesh;
@@ -908,11 +997,17 @@ function createBuilding2(){
     const upside = new THREE.Mesh(geometry_up, material_up);
     upside.position.y = 61;
 
+    upside.castShadow = true;
+    upside.receiveShadow = true;
+
     const geometry_up1 = new THREE.BoxGeometry(42, 2, 22);
     const upside1 = new THREE.Mesh(geometry_up1, material_up);
     upside1.position.x = 10;
     upside1.position.z = 10;
     upside1.position.y = 61;
+
+    upside1.castShadow = true;
+    upside1.receiveShadow = true;
 
     const texture = new THREE.TextureLoader().load('textures/wall_building.jpg');
    
@@ -927,12 +1022,18 @@ function createBuilding2(){
     const outside = new THREE.Mesh( geometry, material );
     outside.position.y = 30;
 
+    outside.castShadow = true;
+    outside.receiveShadow = true;
+
     const geometry1 = new THREE.BoxGeometry(40, 60, 20);
     const material1 = new THREE.MeshPhongMaterial({map:texture});
     const outside1 = new THREE.Mesh( geometry1, material1 );
     outside1.position.x = 10;
     outside1.position.z = 10;
     outside1.position.y = 30;
+
+    outside1.castShadow = true;
+    outside1.receiveShadow = true;
 
     //adicionar janelas 
 
@@ -1005,20 +1106,32 @@ function createHouse1(){
     const mainhouse = new THREE.Mesh(geometry1, material1);
     mainhouse.position.y = 15;
 
+    mainhouse.castShadow = true;
+    mainhouse.receiveShadow = true;
+
     const geometry2 = new THREE.BoxGeometry(10, 15, 20); //pouca altura, so para colocar na parte de cima a cobrir as coisas, com um bocado de borda
     const material2 = new THREE.MeshPhongMaterial({color: 0x000});
     const sidehouse = new THREE.Mesh(geometry2, material2);
     sidehouse.position.set(15,7.5,-5);
+
+    sidehouse.castShadow = true;
+    sidehouse.receiveShadow = true;
 
     const geometry3 = new THREE.BoxGeometry(10, 2, 30); //pouca altura, so para colocar na parte de cima a cobrir as coisas, com um bocado de borda
     const material3 = new THREE.MeshPhongMaterial({color: 0xffffff});
     const tampamain = new THREE.Mesh(geometry3, material3);
     tampamain.position.set(15,16,0);
 
+    tampamain.castShadow = true;
+    tampamain.receiveShadow = true;
+
     const geometria_pilar = new THREE.BoxGeometry(2,15,2);
     const material_pilar = new THREE.MeshPhongMaterial({color: 0xffffff});
     const pilar = new THREE.Mesh(geometria_pilar, material_pilar);
     pilar.position.set(19,7.5,14);
+
+    pilar.castShadow = true;
+    pilar.receiveShadow = true;
 
     casa.add(mainhouse);
     casa.add(sidehouse);
@@ -1089,44 +1202,48 @@ function roadTree(){
     //trunk
     const cilinder = new THREE.CylinderGeometry( 1.25, 1.5, 6, 20 );
     const material_trunk = new THREE.MeshBasicMaterial( {color: 0x964b00, map: texture_trunk} );
+    material_trunk.castShadow = true;
+    material_trunk.receiveShadow = true;
     const tree_trunk = new THREE.InstancedMesh( cilinder, material_trunk, 48 );
 
     tree_trunk.position.y = 3; // acima do plano
 
     tree_trunk.castShadow = true;
-    tree_trunk.receiveShadow = true;
 
 
     //base leafs
 
     const cylinder_base = new THREE.CylinderGeometry(2, 4, 4, 8);
     const material_leafs_base = new THREE.MeshBasicMaterial( {color: 0x8fce00, side: THREE.DoubleSide, map: texture_foliage } );
+    material_leafs_base.castShadow = true;
+    material_leafs_base.receiveShadow = true;
     const leaf_base = new THREE.InstancedMesh(cylinder_base, material_leafs_base, 48);
 
     leaf_base.position.y = 8;
 
     leaf_base.castShadow = true;
-    leaf_base.receiveShadow = true;
 
     //mid leafs
     const cylinder = new THREE.CylinderGeometry(1.5, 3.5, 4, 8);
     const material_leafs_mid = new THREE.MeshBasicMaterial( {color: 0x8fce00, side: THREE.DoubleSide, map: texture_foliage } );
+    material_leafs_mid.castShadow = true;
+    material_leafs_mid.receiveShadow = true;
     const leaf_mid = new THREE.InstancedMesh(cylinder, material_leafs_mid, 48);
 
     leaf_mid.position.y = 12;
 
     leaf_mid.castShadow = true;
-    leaf_mid.receiveShadow = true;
 
     //top leafs
     const cone_top = new THREE.ConeGeometry(2.5, 5, 6, 1);
     const material_leafs_top = new THREE.MeshBasicMaterial( {color: 0x8fce00, map: texture_foliage} );
+    material_leafs_top.castShadow = true;
+    material_leafs_top.receiveShadow = true;
     const leaf_top = new THREE.InstancedMesh(cone_top, material_leafs_top, 48);
 
     leaf_top.position.y = 16.5;
 
     leaf_top.castShadow = true;
-    leaf_top.receiveShadow = true;
 
     const positions = createTreeVector();
 
@@ -1260,28 +1377,39 @@ function createLampadas(){
 
     const geometrypole = new THREE.CylinderGeometry( 0.5, 0.5, 16, 8 ); // 8 porque nao quero muitos triangulos
     const materialpole = new THREE.MeshPhongMaterial( {color: 0x000} );
+    materialpole.castShadow = true;
+    materialpole.receiveShadow = true;
     const pole = new THREE.InstancedMesh( geometrypole, materialpole, 32 );
 
+    pole.castShadow = true;
     pole.position.y = 9;
 
     const geometrybase = new THREE.CylinderGeometry(3, 3, 1, 8 );
     const materialbase = new THREE.MeshPhongMaterial( {color: 0x000} );
+    materialbase.castShadow = true;
+    materialbase.receiveShadow = true;
     const base = new THREE.InstancedMesh( geometrybase, materialbase, 32 );
 
+    base.castShadow = true;
     base.position.y = 0.5;
 
     const geometryup = new THREE.CylinderGeometry(0.1, 0.1, 1, 8 );
     const materialup = new THREE.MeshPhongMaterial( {color: 0x000} );
+    materialup.castShadow = true;
+    materialup.receiveShadow = true;
     const up = new THREE.InstancedMesh( geometryup, materialup, 32 );
 
+    up.castShadow = true;
     up.position.y = 16.5;
     up.position.x = 1;
     
 
     const geometrydown = new THREE.CylinderGeometry(0, 1, 1, 8 );
     const materialdown = new THREE.MeshPhongMaterial( {color: 0x000} );
+    materialdown.castShadow = true;
+    materialdown.receiveShadow = true;
     const down = new THREE.InstancedMesh( geometrydown, materialdown, 32 );
-
+    down.castShadow = true;
     down.position.y = 16.3;
     down.position.x = 1.75;
 
