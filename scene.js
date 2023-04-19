@@ -718,6 +718,8 @@ function createCar(){
 
     pointLight.name = "car_light";
 
+    car.add(pointLight);
+
     return car;
 
 }
