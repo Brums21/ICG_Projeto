@@ -686,12 +686,12 @@ function createFrontWheels(){
     const frontWheelr = createWheel();
     const frontWheell = createWheel();
 
-    frontWheelr.position.z = 5;
+    frontWheelr.position.z = -5;
     frontWheelr.position.x = 2.5;
 
     wheels.add(frontWheell);
 
-    frontWheell.position.z = 5;
+    frontWheell.position.z = -5;
     frontWheell.position.x = -2.5;
 
     wheels.add(frontWheelr);
@@ -699,7 +699,7 @@ function createFrontWheels(){
     return wheels;
 }
 
-function createCar(){
+function createCar(cor){
     const car = new THREE.Group();  // if we move the group, we move the whole car!
 
     //rodas do carro
@@ -707,12 +707,12 @@ function createCar(){
     const backWheelr = createWheel();
     const backWheell = createWheel();
 
-    backWheelr.position.z = -5;
+    backWheelr.position.z = 5;
     backWheelr.position.x = 2.5;
 
     car.add(backWheelr);
 
-    backWheell.position.z = -5;
+    backWheell.position.z = 5;
     backWheell.position.x = -2.5;
 
     car.add(backWheell);
@@ -721,7 +721,7 @@ function createCar(){
 
     const cabinbot = new THREE.Mesh(
         new THREE.BoxGeometry(15, 4, 7),
-        new THREE.MeshPhongMaterial({color: 0xe06666})
+        new THREE.MeshPhongMaterial({color: cor})
     );
     //adicionar textura a isto
 
@@ -735,8 +735,6 @@ function createCar(){
     cabinbot.rotateOnAxis(new THREE.Vector3(0,1,0), Math.PI/2);
 
     car.add(cabinbot);
-
-    car.name = "carro"
 
     //TODO adicionar luzes ao carro
 
@@ -753,7 +751,7 @@ function createCar(){
     spotLight.shadow.camera.top = 500;
     spotLight.shadow.camera.bottom = -500;
 
-    spotLight.name = "car_light";
+    
 
     car.add(spotLight);
     car.add(spotLight.target);
@@ -1690,6 +1688,18 @@ function importFence(){
       });
 }
 
+/* function importAssociacaoDesporto(){
+    return new Promise((resolve, reject) => {
+        const loader = new GLTFLoader();
+        loader.load('./models/fence/scene.gltf', function (gltf) {
+          const model = gltf.scene;
+          resolve(model);
+        }, undefined, function (error) {
+          reject(error);
+        });
+      });
+} */
+
 
 // Create and insert in the scene graph the models of the 3D scene
 function load3DObjects(sceneGraph) {
@@ -1703,12 +1713,23 @@ function load3DObjects(sceneGraph) {
     sceneGraph.add(road);
 
     //car:
-    const car = createCar();  // create a car
+    const car = createCar(0xE0434C);  // create a car
     const frontwheels = createFrontWheels();
+    frontwheels.name = "rodas";
     car.add(frontwheels);
     sceneElements.car = car;
-    car.position.set(150, 0, 120);
+    car.name = "carro";
+    car.position.set(7.5, 0, 0);
     sceneGraph.add(car);
+
+    //second car:
+    const cardummy = createCar(0x118CAE);
+    const frontwheelsdummy = createFrontWheels();
+    cardummy.add(frontwheelsdummy);
+    cardummy.rotation.y = Math.PI;
+    cardummy.position.set(-7.5, 0, -340);
+    cardummy.name = "cardummy";
+    sceneGraph.add(cardummy);
 
     //building - imported
     const building = createBuilding1();
@@ -1784,9 +1805,15 @@ function load3DObjects(sceneGraph) {
 
 // Displacement value
 
-var delta = 0.1;
+function updateCar() {
+    const speed = acceleration - brake;
+    const wheelAngle = steering * Math.PI / 4;
+    // Update the car's velocity and rotation based on speed and wheel angle
+    car.translateOnAxis(car.getWorldDirection(), speed);
+    car.rotateY(wheelAngle);
+}
 
-var dispX = 0.4, dispZ = 0.4;
+var dispX = 0.2, dispZ = 0.2;
 
 function computeFrame(time) {
 
@@ -1804,34 +1831,74 @@ function computeFrame(time) {
     //}
     //light.translateX(delta);
 
+    const cardummy = sceneElements.sceneGraph.getObjectByName("cardummy");
+    
+    if (cardummy.position.z >= 340){
+        cardummy.rotation.y = 0;
+        cardummy.position.x = 7.5;
+    }
+    else
+    if (cardummy.position.z <= -340){
+        cardummy.rotation.y = Math.PI;
+        cardummy.position.x = -7.5;
+    }
+
+    cardummy.translateZ(-0.5);
+
     // CONTROLING THE CUBE WITH THE KEYBOARD
 
+    const acceleration = 0;
 
     const car = sceneElements.sceneGraph.getObjectByName("carro");
+    const rodas = car.getObjectByName("rodas");
 
     if (keyD && car.position.x < 400) {
-        car.rotation.y -= 0.01; 
+        car.rotation.y -= 0.02; 
+        rodas.rotation.y = -Math.PI/12;
         car.translateX(dispX);
     }
     if (keyW && car.position.z > -400) {
         car.translateZ(-dispZ);
     }
     if (keyA && car.position.x > -400) {
-        car.rotation.y += 0.01; 
+        car.rotation.y +=  0.02; 
+        rodas.rotation.y = Math.PI/12;
         car.translateX(-dispX);
     }
     if (keyS && car.position.z < 400) {
         car.translateZ(dispZ);
     }
 
+    if((!keyD) && (!keyA)) {
+        rodas.rotation.y = 0;
+    } 
+
+    /*     if (!keyW && !keyS){
+        if (velocity.x>0){ // acelerar para a
+            velocity.x-=accelerationFactor;
+        }
+        if (velocity.x<0){
+            velocity.x+=accelerationFactor;
+        }
+        if (velocity.z>0){
+            velocity.z-=accelerationFactor;
+        }
+        if (velocity.z<0){
+            velocity.z+=accelerationFactor;
+        }
+        
+    }
+
+    car.position.x += velocity.x;
+    car.position.z += velocity.z; */
+
+    
     // NEW --- Update control of the camera
     sceneElements.camera.lookAt(car.position.x, car.position.y + 5, car.position.z);
     sceneElements.orbitControl.target.copy(car.position);
 
     // Rendering
     helper.render(sceneElements);
-
-
 
     // Call for the next frame
     requestAnimationFrame(computeFrame);
