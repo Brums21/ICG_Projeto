@@ -1400,7 +1400,6 @@ function createLampadas(){
     up.castShadow = true;
     up.position.y = 16.5;
     up.position.x = 1;
-    
 
     const geometrydown = new THREE.CylinderGeometry(0, 1, 1, 8 );
     const materialdown = new THREE.MeshPhongMaterial( {color: 0x000} );
@@ -1411,11 +1410,15 @@ function createLampadas(){
     down.position.y = 16.3;
     down.position.x = 1.75;
 
+
     let positions = createFilaLampadas();
 
     let dummy1 = new THREE.Object3D();
     let dummy2 = new THREE.Object3D();
     let dummy3 = new THREE.Object3D();
+
+    const object = new THREE.Group()
+
     for (let i = positions.length/2; i < positions.length; i++) {
 
         dummy1.position.x = dummy2.position.x = dummy3.position.x = positions[i].x;
@@ -1432,7 +1435,6 @@ function createLampadas(){
         base.setMatrixAt(i, dummy1.matrix);
         up.setMatrixAt(i, dummy2.matrix);
         down.setMatrixAt(i, dummy3.matrix);
-        console.log(pole.position.x + " " + i)
         
     }
 
@@ -1460,7 +1462,7 @@ function createLampadas(){
         
     }
 
-    const object = new THREE.Group().add(pole, base, up, down);
+    object.add(pole, base, up, down);
 
     return object;
 }
@@ -1731,26 +1733,30 @@ function load3DObjects(sceneGraph) {
     cardummy.name = "cardummy";
     sceneGraph.add(cardummy);
 
+    const grupo = new THREE.Group();
+
     //building - imported
     const building = createBuilding1();
     building.position.set(170, 0, -70);
     sceneGraph.add(building);
+    grupo.add(building);
 
     const building1 = createBuilding1();
     building1.position.set(230, 0, -70);
-    sceneGraph.add(building1);
+    grupo.add(building1);
 
     const building2 = createBuilding2();
     building2.position.set(60, 0, -70);
-    sceneGraph.add(building2);
+    grupo.add(building2);
 
     const building3 = createBuilding2();
     building3.position.set(80, 0, -70);
-    sceneGraph.add(building3);
+    grupo.add(building3);
 
     const building4 = createBuilding2();
     building4.position.set(100, 0, -70);
-    sceneGraph.add(building4);
+    grupo.add(building4);
+
 
     const casa1 = createHouse1();
     casa1.position.set(0,0,0);
@@ -1778,6 +1784,7 @@ function load3DObjects(sceneGraph) {
         // Do something with the loaded model
         model.scale.set(30,30,30);
         model.position.set(100,12,-130);
+        model.name= "model1";
         sceneGraph.add(model);
     })
     .catch(error => {
@@ -1790,12 +1797,72 @@ function load3DObjects(sceneGraph) {
         model.rotation.y = Math.PI;
         model.position.set(720,15,70); //x is good, falta mudar o z
         model.scale.set(400,400,400);
-
+        model.name= "model2";
         sceneGraph.add(model);
     })
     .catch(error => {
         console.error(error);
     }); 
+
+    const grupo2 = grupo.clone();
+    grupo2.rotation.y = Math.PI;
+    
+    importBuilding1()
+    .then(model => {
+        // Do something with the loaded model
+        model.scale.set(30,30,30);
+        model.position.set(-70,12,-130);
+        model.name= "model1";
+        sceneGraph.add(model);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+    importBuilding3()
+    .then(model => {
+        // Do something with the loaded model
+        model.rotation.y = Math.PI;
+        model.position.set(320,15,70); //x is good, falta mudar o z
+        model.scale.set(400,400,400);
+        model.name= "model2";
+        sceneGraph.add(model);
+    })
+    .catch(error => {
+        console.error(error);
+    }); 
+
+    const grupo3 = grupo.clone();
+    grupo3.position.x = -300;
+
+    importBuilding1()
+    .then(model => {
+        // Do something with the loaded model
+        model.scale.set(30,30,30);
+        model.position.set(-70,12,190);
+        model.name= "model1";
+        sceneGraph.add(model);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+    importBuilding3()
+    .then(model => {
+        // Do something with the loaded model
+        model.rotation.y = Math.PI;
+        model.position.set(320,15,375); //x is good, falta mudar o z
+        model.scale.set(400,400,400);
+        model.name= "model2";
+        sceneGraph.add(model);
+    })
+    .catch(error => {
+        console.error(error);
+    }); 
+
+    sceneGraph.add(grupo);
+    sceneGraph.add(grupo2);
+    sceneGraph.add(grupo3);
 
     //axis helper
 /*     const axesHelper = new THREE.AxesHelper( 500 );
