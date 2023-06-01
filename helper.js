@@ -1,4 +1,4 @@
-"use strict";
+
 
 //  Adapted from Daniel Rohmer tutorial
 //
@@ -7,19 +7,17 @@
 // 		J. Madeira - April 2021
 
 export const helper = {
-
     initEmptyScene: function (sceneElements) {
-
         sceneElements.sceneGraph = new THREE.Scene();
 
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 500);
         sceneElements.camera = camera;
         camera.position.set(10, 20, 20);
         camera.lookAt(0, 0, 0);
 
-        const ambientLight = new THREE.AmbientLight('rgb(255, 255, 255)', 1.0); //mudar esta propriedade para ajustar a luz do dia!!
+        const ambientLight = new THREE.AmbientLight('rgb(255, 255, 255)', 1); //mudar esta propriedade para ajustar a luz do dia!!
         sceneElements.sceneGraph.add(ambientLight);
 
         const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -40,7 +38,7 @@ export const helper = {
 
         sceneElements.AxesHelper = new THREE.AxesHelper(5);
 
-
+        return ambientLight;
     },
 
     render: function(sceneElements) {

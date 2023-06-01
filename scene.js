@@ -12,7 +12,12 @@ const sceneElements = {
     car: null
 };
 
-helper.initEmptyScene(sceneElements);
+function intensity(ev) {
+    this.amb.intensity = Number.parseInt(ev.target.value) / 100
+}
+
+const amb = helper.initEmptyScene(sceneElements, 100);
+document.getElementById("inputDay").oninput = ((intensity).bind({amb}))
 load3DObjects(sceneElements.sceneGraph);
 requestAnimationFrame(computeFrame);
 
@@ -112,6 +117,7 @@ function createPassadeira(){
     faixa.rotation.x = -Math.PI/2;
 
     //supondo que isto esta em coordenadas (0,0,0)
+    //usar instaced para fazer com que o numero de calls seja menor
 
     faixa.position.set(0, 0.1, -12);
 
@@ -750,8 +756,6 @@ function createCar(cor){
     spotLight.shadow.camera.right = 500;
     spotLight.shadow.camera.top = 500;
     spotLight.shadow.camera.bottom = -500;
-
-    
 
     car.add(spotLight);
     car.add(spotLight.target);
@@ -1575,16 +1579,28 @@ function futebolCamp(){
     banc2.position.y = 7.5;
     banc2.position.x = 80;
 
-    const geometry3 = new THREE.BoxGeometry(10,15,120);
-    const banc3 = new THREE.Mesh(geometry3, material1);
-    banc3.position.y = 7.5;
-    banc3.position.x = 80;
+    const geometry01 = new THREE.BoxGeometry(10,5,120);
+    const banc01 = new THREE.Mesh(geometry01, material1);
+    banc01.position.y = 2.5;
+    banc01.position.x = -60;
+
+    const geometry02 = new THREE.BoxGeometry(10,10,120);
+    const banc02 = new THREE.Mesh(geometry02, material1);
+    banc02.position.y = 5;
+    banc02.position.x = -70;
+
+    const geometry03 = new THREE.BoxGeometry(10,15,120);
+    const banc03 = new THREE.Mesh(geometry03, material1);
+    banc03.position.y = 7.5;
+    banc03.position.x = -80;
     
     campo.add(camp);
     campo.add(banc0);
     campo.add(banc1);
     campo.add(banc2);
-    campo.add(banc3);
+    campo.add(banc01);
+    campo.add(banc02);
+    campo.add(banc03);
 
     return campo;
 
@@ -1722,6 +1738,7 @@ function load3DObjects(sceneGraph) {
     sceneElements.car = car;
     car.name = "carro";
     car.position.set(7.5, 0, 0);
+    car.add(sceneElements.camera);
     sceneGraph.add(car);
 
     //second car:
